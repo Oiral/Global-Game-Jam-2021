@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     public Transform visuals;
 
+    public Animator animator;
+
     // Update is called once per frame
     void Update()
     {
@@ -29,8 +31,12 @@ public class Player : MonoBehaviour
             0,
             Input.GetAxis("Vertical"));
 
-        if (targetMoveDir.magnitude < 0.2f) return;
-
+        if (targetMoveDir.magnitude < 0.2f)
+        {
+            animator.SetBool("Moving", false);
+            return;
+        }
+        animator.SetBool("Moving", true);
 
         Debug.Log("Moving");
         targetMoveDir = Vector3.ClampMagnitude(targetMoveDir, 1);

@@ -16,6 +16,8 @@ public class AI : MonoBehaviour
 
     public float viewRange;
 
+    public Animator animator;
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, viewRange);
@@ -46,6 +48,7 @@ public class AI : MonoBehaviour
 
         wanderPosition = transform.position;
 
+        animator.SetBool("Moving", true);
     }
 
     public float wanderRange = 5f;
@@ -101,9 +104,11 @@ public class AI : MonoBehaviour
             //If what we hit was the player
             if (hit.transform.tag == "Player")
             {
+                animator.SetBool("Player In View", true);
                 return true;
             }
         }
+        animator.SetBool("Player In View", false);
         return false;
     }
 
