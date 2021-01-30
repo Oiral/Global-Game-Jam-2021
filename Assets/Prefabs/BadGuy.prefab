@@ -217,6 +217,9 @@ MonoBehaviour:
   player: {fileID: 0}
   viewRange: 10
   animator: {fileID: 655940534}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 256
   wanderRange: 35
   gotToDestinationSize: 2
 --- !u!1001 &584866091
