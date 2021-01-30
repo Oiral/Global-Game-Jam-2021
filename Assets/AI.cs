@@ -19,21 +19,41 @@ public class AI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, viewRange);
+        
+    }
 
+    private void OnDrawGizmosSelected()
+    {
         if (agent != null)
         {
             Gizmos.DrawSphere(agent.destination, gotToDestinationSize);
         }
+
+        Gizmos.color = Color.red;
+        Vector3 pos = wanderPosition;
+
+        if (wanderPosition == Vector3.zero)
+        {
+            pos = transform.position;
+        }
+
+        Gizmos.DrawWireSphere(pos, wanderRange);
     }
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
+        wanderPosition = transform.position;
+
     }
 
     public float wanderRange = 5f;
     public float gotToDestinationSize = 3f;
+
+    Vector3 wanderPosition = Vector3.zero;
+
+    
 
     // Update is called once per frame
     void Update()
@@ -55,7 +75,7 @@ public class AI : MonoBehaviour
                 {
                     Debug.Log("Seaching for point");
                     Vector3 point;
-                    if (RandomPointOnNavMesh(transform.position, wanderRange, out point))
+                    if (RandomPointOnNavMesh(wanderPosition, wanderRange, out point))
                     {
                         //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                         agent.SetDestination(point);
