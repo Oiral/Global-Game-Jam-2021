@@ -16,8 +16,6 @@ public class Rope : MonoBehaviour
 
     GameObject ropeAttachPoint;
 
-    public float maxLength = 2;
-
     float ropeLength;
 
     float ropeUpdateDistance = 0.1f;
@@ -51,15 +49,6 @@ public class Rope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check if the player has unlocked the grapple
-        if (Input.GetButtonDown("Fire1"))
-        {
-
-            ToggleRope();
-        }
-
-
-
         if (ropeActived)
         {
 
@@ -91,8 +80,6 @@ public class Rope : MonoBehaviour
         ropeActived = true;
         pointsInRope.Add(startingPoint);
         lineRender.enabled = true;
-
-        ropeLength = maxLength;
 
         //RaycastHit hit;
         //if (Physics.Raycast(transform.position + transform.up, transform.forward, out hit))

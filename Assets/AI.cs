@@ -71,7 +71,6 @@ public class AI : MonoBehaviour
         
     }
 
-
     bool CanSeePlayer()
     {
         //Raycast from here to the player
