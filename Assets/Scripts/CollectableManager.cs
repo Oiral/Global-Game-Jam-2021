@@ -20,6 +20,7 @@ public class CollectableManager : MonoBehaviour
         }
 
         Arrow.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -34,9 +35,13 @@ public class CollectableManager : MonoBehaviour
 
     public Text displayText;
 
-    int maxNumberOfCollectables;
+    public int maxNumberOfCollectables;
+
+    public int collectablesCollected;
 
     public GameObject Arrow;
+
+    public float elapsedTime;
 
     public void AddCollectableToWorld(Collectable item)
     {
@@ -56,6 +61,7 @@ public class CollectableManager : MonoBehaviour
     {
         if (collectables.Contains(item))
         {
+            collectablesCollected += 1;
             //Lets remove it from the list
             collectables.Remove(item);
             //Lets destroy the game object associated with the collectable
@@ -78,6 +84,8 @@ public class CollectableManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        elapsedTime += Time.deltaTime;
+
         if (showArrow)
         {
             //If there is still something to collect show the direction that way

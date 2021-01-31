@@ -8,10 +8,13 @@ public class TorchToggle : MonoBehaviour
 
     public bool forceStayOn;
 
+    public ParticleSystem particle;
+
     private void Start()
     {
         currentLight = GetComponent<Light>();
         currentLight.enabled = false;
+        
     }
 
     private void Update()
@@ -34,6 +37,10 @@ public class TorchToggle : MonoBehaviour
         if (other.tag == "Player")
         {
             currentLight.enabled = true;
+            if (particle != null)
+            {
+                particle.Play();
+            }
         }
     }
 
@@ -42,6 +49,10 @@ public class TorchToggle : MonoBehaviour
         if (other.tag == "Player")
         {
             currentLight.enabled = false;
+            if (particle != null)
+            {
+                particle.Stop();
+            }
         }
     }
 }
