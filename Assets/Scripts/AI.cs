@@ -10,7 +10,8 @@ public class AI : MonoBehaviour
 {
     public AIState currentState = AIState.foundPlayer;
 
-    NavMeshAgent agent;
+    [HideInInspector]
+    public NavMeshAgent agent;
     float startingAgentSpeed;
     float startingAgentAcceleration;
 
